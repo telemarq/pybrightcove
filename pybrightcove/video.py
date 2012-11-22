@@ -125,6 +125,7 @@ class Rendition(object):
         self.remote_stream_name = None
         self.video_duration = None
         self.video_codec = None
+        self.upload_timestamp_millis = None
 
         if data:
             self.url = data.get('url', None)
@@ -139,6 +140,7 @@ class Rendition(object):
             self.remote_stream_name = data.get('remoteStreamName', None)
             self.video_duration = data['videoDuration']
             self.video_codec = data['videoCodec']
+            self.upload_timestamp_millis = data['uploadTimestampMillis']
 
     def __setattr__(self, name, value):
         msg = None
@@ -172,7 +174,8 @@ class Rendition(object):
             'remoteUrl': self.remote_url,
             'remoteStream': self.remote_stream_name,
             'videoDuration': self.video_duration,
-            'videoCodec': self.video_codec}
+            'videoCodec': self.video_codec,
+            'uploadTimestampMillis': self.upload_timestamp_millis}
         [data.pop(key) for key in data.keys() if data[key] is None]
         return data
 
