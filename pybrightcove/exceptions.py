@@ -46,7 +46,7 @@ class BrightcoveError(Exception):
 
     @classmethod
     def raise_exception(cls, data):
-        if data.get("code", "not_an_error_code" in ERROR_MAP:
+        if data.get("code", "not_an_error_code") in ERROR_MAP:
             raise ERROR_MAP[data["code"]](data.get("message"), data)
         raise cls(raw_data=data)
 
