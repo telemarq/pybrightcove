@@ -206,8 +206,7 @@ class APIConnection(Connection):
         if req:
             result = simplejson.loads(req.read())
             if 'error' in result and result['error']:
-                exceptions.BrightcoveError.raise_exception(
-                    result['error'])
+                exceptions.BrightcoveError.raise_exception(result)
             return result['result']
 
     def _get_response(self, **kwargs):
@@ -227,8 +226,7 @@ class APIConnection(Connection):
         data = simplejson.loads(req.read())
         self._api_raw_data = data
         if data and data.get('error', None):
-            exceptions.BrightcoveError.raise_exception(
-                data['error'])
+            exceptions.BrightcoveError.raise_exception(data)
         if data == None:
             raise exceptions.NoDataFoundError(
                 "No data found for %s" % repr(kwargs))
